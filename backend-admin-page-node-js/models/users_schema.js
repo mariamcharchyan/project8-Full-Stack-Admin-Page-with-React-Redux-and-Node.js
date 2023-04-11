@@ -2,7 +2,8 @@
     const saltRounds = 10;
     
     const Sequelize = require('sequelize');
-    
+
+    //const sequelize = new Sequelize('mydb', 'username', 'password', {
     const sequelize = new Sequelize('mydb', null, null, {
       dialect: 'sqlite',
       storage: 'database.db'
