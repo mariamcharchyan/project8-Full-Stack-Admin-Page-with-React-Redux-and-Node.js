@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './Header/Header';
+import { Routes, Route} from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import BoxToys from './MainComponents/BoxToys/BoxToys';
+import BoxToyID from './MainComponents/BoxToys/BoxToyID';
+import LoginForm from './MainComponents/Subscribe/LogIn/LoginForm';
+import LoggedInAdmin from './MainComponents/Subscribe/LoggedInAdmin/LoggedInAdmin';
+import LoggedInUser from './MainComponents/Subscribe/LoggedInUser/LoggedInUser'
+import Register from './MainComponents/Subscribe/Register/Register';
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Header />
+        <Routes>
+          <Route path='/products' element={<BoxToys />}/>
+          <Route path='/product/:id' element={<BoxToyID />}/>
+          <Route path='/register' element={<Register />}/>
+          <Route path='/login' element={<LoginForm />}/>
+          <Route path='/loggedin/admin' element={<LoggedInAdmin />}/>
+          <Route path='/loggedin/user' element={<LoggedInUser />}/>
+        </Routes>
     </div>
   );
 }

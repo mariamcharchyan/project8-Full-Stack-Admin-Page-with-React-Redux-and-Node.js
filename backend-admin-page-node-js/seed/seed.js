@@ -11,20 +11,21 @@ const users = [
 ];
 
 const categories = [
-    { name: "girl" },
-    { name: "boy" },
-    { name: "men" },
-    { name: "women" },
-    { name: "accessories" }
+    { name: "For girl" },
+    { name: "For boy" },
+    { name: "For all" }
 ];
 
 const products = [
-    { image: 'https1', name: 'image1', price: 111100, discount_percentage: 30,description: 'description1', categories_id: 1},
-    { image: 'https2', name: 'image2', price: 111100, discount_percentage: 30,description: 'description2', categories_id: 2},
-    { image: 'https3', name: 'image3', price: 111100, discount_percentage: 30,description: 'description3', categories_id: 2},
-    { image: 'https4', name: 'image4', price: 111100, discount_percentage: 30,description: 'description4', categories_id: 1},
-    { image: 'https5', name: 'image5', price: 111100, discount_percentage: 30,description: 'description5', categories_id: 1},
-    { image: 'https6', name: 'image6', price: 111100, discount_percentage: 30,description: 'description6', categories_id: 2},
+    { image: 'https://rukminim1.flixcart.com/image/416/416/jepzrm80/learning-toy/h/e/m/toyk-kids-toys-musical-colorful-baby-fun-house-many-kinds-of-original-imaf3cjsyyzdzfuq.jpeg?q=70', categories_id: 3, name: 'Musical Toy', price: 50, discount_percentage: 30,description: 'A best selling favorite with thousands of 5 star ratings. Inspires a lifelong love of music. Baby can switch between 10 total melodies'},
+    { image: 'https://dpi399zi9oi5i.cloudfront.net/wp-content/uploads/2021/06/15174742/WhatsApp-Image-2021-06-14-at-1.52.21-PM.jpeg', categories_id: 1, name: 'Mini kitchen', price: 100, discount_percentage: 30,description: 'Mini kitchen. There is a saucepan and a frying pan to prepare the tastiest imaginative menus. There is even a small sink, two spatulas and the essentials for any meal: salt and pepper shakers. This cute little kitchen is foldable for easy portability and to pack all accessories inside.'},
+    { image: 'https://m.media-amazon.com/images/I/61tplXbeaLL._AC_SY355_.jpg', categories_id: 3, name: 'Maze', price: 20, discount_percentage: 30,description: 'The pull labyrinth develops motor skills, coordination, sensory skills, logic and thinking.'},
+    { image: 'https://cdn.shopify.com/s/files/1/0088/7986/5907/products/Viga-Magnetic-Shapes-Blocks-Set-Construction-Viga-Toys-Toycra-4_700x700.jpg?v=1653495389', categories_id: 3, name: 'Maze and logic box', price: 40, discount_percentage: 30,description: 'The pull labyrinth develops motor skills, coordination, sensory skills, logic and thinking. By moving the small figures along the entire length of the wire, the child trains the muscles of the hand and the celerity of fingers'},
+    { image: 'https://m.media-amazon.com/images/I/61rkkggbFLL.jpg', categories_id: 2, name: 'A rocket', price: 30, discount_percentage: 30,description: 'The fully equipped, 2-in-1 set includes a detachable top capsule and two astronauts that sport molded spacesuits, helmets, and dual-tank backpacks. Powered by a main booster and three auxiliary fin boosters, the Rocket has a large door that flips down to double as a set of steps up into the main cavity, while the detachable nose cone capsule has its own door that opens to reveal buttons, dials, and of course, the signature Green Toys 8-track.'},
+    { image: 'https://ae01.alicdn.com/kf/Hc5ba085f9e2542ac824cc1192f06e8d7h.jpg', categories_id: 2, name: 'Excavator', price: 30, discount_percentage: 30,description: 'Tonka Excavator is made of cold-rolled steel and features colorful and realistic detail.Features a movable arm with a heavy-duty metal bucket to dig and haul. Real working treads allow you to maneuver through any job site in style'},
+    { image: 'https://m.media-amazon.com/images/I/71auvSc8ClL._AC_SL1500_.jpg', categories_id: 1, name: 'Mini kitchen', price: 100, discount_percentage: 30,description: 'Mini kitchen. There is a saucepan and a frying pan to prepare the tastiest imaginative menus. There is even a small sink, two spatulas and the essentials for any meal: salt and pepper shakers. This cute little kitchen is foldable for easy portability and to pack all accessories inside.'},
+    { image: 'https://rukminim1.flixcart.com/image/612/612/k4lmv0w0/musical-toy/q/y/b/wooden-xylophone-musical-toy-for-children-with-8-note-big-size-original-imafng8zzagmjdrp.jpeg?q=70', categories_id: 3, name: 'Xylophone', price: 50, discount_percentage: 30,description: 'Wooden xylophone colorful musical instrument toy children educational toys with drumsticks for kids'},
+    { image: 'https://m.media-amazon.com/images/I/71YBUL+hxLL._AC_UF894,1000_QL80_.jpg', categories_id: 3, name: 'Wooden Log Cabin Set Building House Toy', price: 30, discount_percentage: 30,description: 'A timeless retro toy for kids and adults alike, these traditional building logs have just the right mix of modern durability and classic style. Childhood memories are waiting to be archived with these amazing wood logs'}
 ];
 
 const sequelize = new Sequelize('mydb',null,null,
@@ -34,8 +35,8 @@ const sequelize = new Sequelize('mydb',null,null,
 const User = sequelize.define('user', {
         id: {
           type: Sequelize.INTEGER,
-          autoIncrement: true,
-          primaryKey: true
+          primaryKey: true,
+          autoIncrement: true
         },
         name: {
           type: Sequelize.STRING,

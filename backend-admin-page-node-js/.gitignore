@@ -1,2 +1,7 @@
 node_modules
 .env
+project8.txt
+seed/images
+controller/cartItems_controller.js
+controller/carts_controller.js
+routes/cartItems_routes.js
