@@ -42,27 +42,19 @@ async function login_user(req, res) {
   try {
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(201).json({ wrongStatus: 'Wrong email' });
+      return res.status(201).json({ status: 'Wrong email' });
     }
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      return res.status(201).json({ wrongStatus: 'Wrong password' });
+      return res.status(201).json({ status: 'Wrong password' });
     }
 
     const token = jwt_generate.generateAccessToken(email);
     return res.status(201).json({
       status: user.status,
-      // user:{
-      //   name:user.name,
-      //   surename:user.surename,
-      //   age:user.age,
-      //   gender:user.gender,
-      //   email:user.email,
-      // }, 
       token 
     });
-    // res.status(201).json({ status: 'Logged in', jwt: token });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: error.message });
@@ -74,12 +66,12 @@ async function get_user_by_email_and_password(req, res) {
   try {
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(201).json({ wrongStatus: 'Wrong email' });
+      return res.status(201).json({ status: 'Wrong email' });
     }
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      return res.status(201).json({ wrongStatus: 'Wrong password' });
+      return res.status(201).json({ status: 'Wrong password' });
     } else {
       res.send(user);
     }

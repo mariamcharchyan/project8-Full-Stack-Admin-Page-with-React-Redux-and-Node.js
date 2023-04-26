@@ -4,15 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchLoginForm } from "../reducerLoginForm";
 import { useState } from 'react';
 import AdminPart from './AdminPart/AdminPart';
+import Warning from './Services/Warning/Warning';
 import GetProduct from './Services/GetProduct/GetProduct';
 import DeleteProduct from './Services/DeleteProduct/DeleteProduct';
 import AddProduct from './Services/AddProduct/AddProduct';
 import UpdateProduct from './Services/UpdateProduct/UpdateProduct';
-import GetCategory from './Services/GetCategory/GetCategory';
-import DeleteCategory from './Services/DeleteCategory/DeleteCategory';
-import AddCategory from './Services/AddCategory/AddCategory';
-import UpdateCategory from './Services/UpdateCategory/UpdateCategory';
-
+import CRUD_Category from './Services/CRUDcategory/CRUDcategory';
 export default function LoggedInAdmin(){
     //for admin or services data
     const [adminOrServices, setAdminOrServices] = useState(true);
@@ -23,15 +20,16 @@ export default function LoggedInAdmin(){
 
     //for acardion in services
     const [services, setServices] = useState({
-        adminPart: true,
+        warning: true,
         getProduct: false,
         deleteProduct: false,
         addProduct: false,
         updateProduct: false,
-        getCategory: false,
-        deleteCategory: false,
-        addCategory: false,
-        updateCategory: false
+        CRUDcategory:false,
+        // getCategory: false,
+        // deleteCategory: false,
+        // addCategory: false,
+        // updateCategory: false
     });
     console.log(services);
     function setService(key) {
@@ -63,9 +61,12 @@ export default function LoggedInAdmin(){
         <div className='containerAdmin'>
             <div className='containerAdminBox'>
                 <div className='containerAdminTop'>
-                    <h1>Welcome Admin!</h1>
-                    <button onClick={() => AdminOrServices(true)}>My Data</button>
+                    {adminOrServices ?
                     <button onClick={() => AdminOrServices(false)}>Services</button>
+                    : 
+                    <button onClick={() => AdminOrServices(true)}>My Data</button>
+                    }
+                    <h1>ADMIN</h1>
                     <button onClick={handleLogout}>Logout</button>
                 </div>
                 <div className='containerAdminBottom'>
@@ -78,28 +79,23 @@ export default function LoggedInAdmin(){
                         <h2>Services</h2>
                         <ul>
                             <h2>Products</h2>
+                            <li onClick={() => setService("addProduct")}>Add Product</li>
                             <li onClick={() => setService("getProduct")}>Get Product</li>
                             <li onClick={() => setService("deleteProduct")}>Delete Product</li>
-                            <li onClick={() => setService("addProduct")}>Add Product</li>
                             <li onClick={() => setService("updateProduct")}>Update Product</li>
                         </ul>
                         <ul>
                             <h2>Categories</h2>
-                            <li onClick={() => setService("getCategory")}>Get Category</li>
-                            <li onClick={() => setService("deleteCategory")}>Delete Category</li>
-                            <li onClick={() => setService("addCategory")}>Add Category</li>
-                            <li onClick={() => setService("updateCategory")}>Update Category</li>
+                            <li onClick={() => setService("CRUDcategory")}>CRAD Category</li>
                         </ul>
                     </div>
                     <div  className='containerAdminRight'>
+                    {services.warning ? <Warning /> : null}
+                    {services.addProduct ? <AddProduct /> : null}
                     {services.getProduct ? <GetProduct /> : null}
                     {services.deleteProduct ? <DeleteProduct /> : null}
-                    {services.addProduct ? <AddProduct /> : null}
                     {services.updateProduct ? <UpdateProduct /> : null}
-                    {services.getCategory ? <GetCategory /> : null}
-                    {services.deleteCategory ? <DeleteCategory /> : null}
-                    {services.addCategory ? <AddCategory /> : null}
-                    {services.updateCategory ? <UpdateCategory /> : null}
+                    {services.CRUDcategory ? <CRUD_Category /> : null}
                     </div>
                     </>
                  }

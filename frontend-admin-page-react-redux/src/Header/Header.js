@@ -16,8 +16,7 @@ function Header({isLoggedIn ,setIsLoggedIn}) {
                         <Link to="/" className="link">Home</Link>
                         <Link to="/products" className="link">Shop</Link>
                         <Link to="#" className="link">About</Link>
-                        <Link to="#" className="link">Contact</Link>
-                        <Link to="/services" className="link">Services</Link>  
+                        <Link to="#" className="link">Contact</Link> 
                     </div>
                 </div>
                 <div className="navBarRight">

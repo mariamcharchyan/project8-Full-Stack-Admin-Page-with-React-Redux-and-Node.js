@@ -3,8 +3,8 @@ import './AdminPart.css';
 export default function AdminPart(){
 
     return (
-        <>
-            AdminPart
+        <>  
+            <h1>Welcome Admin!</h1>
         </>
     );
 };

@@ -8,8 +8,9 @@ export default function LoggedInUser(){
     const navigate = useNavigate();
     const handleLogout = (e) => {
         e.preventDefault();
+        dispatch(fetchLoginForm(null, null));
         localStorage.clear();
-        navigate("/login")
+        navigate("/login");
     }
     return (
         <>

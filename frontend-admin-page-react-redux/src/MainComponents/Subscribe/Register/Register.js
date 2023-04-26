@@ -17,77 +17,75 @@ export default function Register() {
   };
 
   return (
-    <form className="register-form" onSubmit={handleSubmit}>
-        <Link Link to="/login">
-          <button>Log in</button>
-        </Link>
-          <hr/>
-      <h2>Register</h2>
-
-      <label>
-        Name:
-        <input
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        />
-      </label>
-      <br/>
-      <label>
-        Surename:
-        <input
-          type="text"
-          value={surename}
-          onChange={(event) => setSurename(event.target.value)}
-        />
-      </label>
-      <br/>
-      <label>
-        Age:
-            <input
+    <div className='containerRegister'>
+      <div className="register">
+        <h2>Register</h2>
+        <div>
+          <input
+            type="text"
+            value={name}
+            placeholder="Name"
+            onChange={(event) => setName(event.target.value)}
+          />
+        </div><br/>
+        <div>
+          <input
+            type="text"
+            value={surename}
+            placeholder="Surename"
+            onChange={(event) => setSurename(event.target.value)}
+          />
+        </div><br/>
+        <div>
+              <input
+              type="number"
+              value={age}
+              placeholder="Age"
+              onChange={(event) => setAge(event.target.value)}
+              />
+        </div>
+        <br/>
+        <div>
+          <input
+            type="text"
+            value={gender}
+            placeholder="Gender"
+            onChange={(event) => setGender(event.target.value)}
+          />
+        </div><br/>
+        <div>
+          <input
             type="email"
-            value={age}
-            onChange={(event) => setAge(event.target.value)}
-            />
-      </label>
-      <br/>
-      <label>
-      Gender:
-        <input
-          type="email"
-          value={gender}
-          onChange={(event) => setGender(event.target.value)}
-        />
-      </label>
-      <br/>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-      </label>
-      <br/>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-      </label>
-      <br/>
-      <label>
-        Confirm Password:
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(event) => setConfirmPassword(event.target.value)}
-        />
-      </label>
-      <br/>
-      <button type="submit">Register</button>
-    </form>
+            value={email}
+            placeholder="Email address"
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </div><br/>
+        <div>
+          <input
+            type="password"
+            value={password}
+            placeholder="Password"
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div><br/>
+        <div>
+          <input
+            type="password"
+            value={confirmPassword}
+            placeholder="Confirm Password"
+            onChange={(event) => setConfirmPassword(event.target.value)}
+          />
+        </div><br/>
+        <div className='errorMesage'>
+              <p>errorMesage</p>
+            </div>
+        <button className='register-Button'>Register</button><br/>
+          <div className='loginP'><p>—————— There is profile ——————</p></div>
+          <Link Link to="/login">
+            <button className='login-Button'>Log in</button>
+          </Link>
+      </div>
+    </div>
   );
 }
