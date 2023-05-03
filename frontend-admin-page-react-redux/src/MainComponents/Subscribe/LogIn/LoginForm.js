@@ -28,9 +28,14 @@ export default function LoginForm(){
       }
   };
   
+  // setemailANDpassword({ email, password });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchLoginForm({ email, password }))
+    
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
   };
 
   useEffect(()=>{

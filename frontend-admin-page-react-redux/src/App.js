@@ -7,8 +7,11 @@ import LoginForm from './MainComponents/Subscribe/LogIn/LoginForm';
 import LoggedInAdmin from './MainComponents/Subscribe/LoggedInAdmin/LoggedInAdmin';
 import LoggedInUser from './MainComponents/Subscribe/LoggedInUser/LoggedInUser'
 import Register from './MainComponents/Subscribe/Register/Register';
+import { useState } from 'react';
 
 function App() {
+  const [emailANDpassword, setemailANDpassword] = useState();
+  console.log(emailANDpassword);
 
   return (
     <div className="App">

@@ -13,11 +13,12 @@ export default function UpdateProduct({setIsEditing, product}){
     const [nameUpdate, setNameUpdate] = useState(product.name);
     const [priceUpdate, setPriceUpdate] = useState(product.price);
     const [discountPercentageUpdate, setDiscountPercentageUpdate] = useState(product.discount_percentage);
+    const [quantity, setQuantity] = useState(product.quantity);
     const [descriptionUpdate, setDescriptionUpdate] = useState(product.description);
     const [categoryUpdate, setCategoryUpdate] = useState(product.categories_id);
     console.log(categoryUpdate);
 
-      //for Post Product with id
+    //for Post Product with id
    const [updateProductData, setUpdateProductData] = useState([]);
    console.log(updateProductData);
 
@@ -37,12 +38,14 @@ export default function UpdateProduct({setIsEditing, product}){
             },
             body: JSON.stringify(updateProductData)
         })
-        .then(response => response.json())
+        .then(response => {
+            setIsEditing(true)
+            return response.json()
+          })
         .then(data => {
             console.log(data);
         })
         .catch((error) => {
-            // setError(`Error: ${error}`)
             console.error('Error:', error);
         });
     }
@@ -63,8 +66,7 @@ export default function UpdateProduct({setIsEditing, product}){
                 console.log(newDataCategories);
             })
             .catch(error => {
-                // setError(`Error categories: ${error}`)
-                console.error('Error get categories:', error);
+                console.error(`Error categories: ${error}`);
         })
     ),[]);
 
@@ -75,6 +77,7 @@ export default function UpdateProduct({setIsEditing, product}){
             name: nameUpdate,
             price: priceUpdate,
             discount_percentage: discountPercentageUpdate,
+            quantity: quantity,
             description: descriptionUpdate,
             categories_id: categoryUpdate
         }),[
@@ -84,6 +87,7 @@ export default function UpdateProduct({setIsEditing, product}){
             discountPercentageUpdate,
             descriptionUpdate,
             categoryUpdate,
+            quantity
     ]);
 
 
@@ -118,6 +122,10 @@ export default function UpdateProduct({setIsEditing, product}){
                     <h5>Discount Percentage:</h5>
                     <input type="text" value={discountPercentageUpdate} onChange={(event) => setDiscountPercentageUpdate(event.target.value)} />
                 </div>
+                <div className='discount_percentage'>
+                    <h5>Quantity:</h5>
+                    <input type="text" value={quantity} onChange={(event) => setQuantity(event.target.value)} />
+                </div>
                 <div className='description'>
                     <h5>Description:</h5>
                     <textarea className="description" value={descriptionUpdate} onChange={(event) => setDescriptionUpdate(event.target.value)}></textarea>
@@ -125,7 +133,7 @@ export default function UpdateProduct({setIsEditing, product}){
             </div>
             </div>
             <div className='updateProductButtons'>
-                <div className='productSaveButton'><button onClick={() =>  {handleUpdate(product.id); setIsEditing(true)}}>SAVE</button></div>
+                <div className='productSaveButton'><button onClick={() =>  {handleUpdate(product.id)}}>SAVE</button></div>
                 <div className='productCencelButton'><button onClick={() => setIsEditing(true)}>CENCELE</button></div>
             </div>
         </div>

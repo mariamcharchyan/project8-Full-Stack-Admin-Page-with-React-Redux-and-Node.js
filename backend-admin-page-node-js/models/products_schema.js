@@ -25,6 +25,10 @@ const sequelize = new Sequelize('mydb',null,null,
           type: Sequelize.INTEGER,
           allowNull: false
         },
+        quantity: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+        },
         description: {
           type: Sequelize.TEXT,
           allowNull: true

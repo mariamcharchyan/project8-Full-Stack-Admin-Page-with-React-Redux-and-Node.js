@@ -5,17 +5,20 @@ const mailer = require('../mailer/mailer');
 const { User } = require('../models/users_schema');
 
 const SECRET = process.env.SECRET
+const saltRounds = 10;
 
 async function register_user(req, res) {
-  const { name, surename, age, gender, email, password } = req.body;
-  const hashed_password = await bcrypt.hash(password, 10);
-
   try {
+    const { name, surename, age, gender, email, password, image } = req.body;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hashed_password = await bcrypt.hash(password, salt);
+    console.log({hashed_password:hashed_password});
+
     const user = await User.findOne({ where: { email } });
     if (user) {
       return res.send(JSON.stringify({ status: 'Email already exists' }));
     }
-
+   
     const newUser = await User.create({
       name,
       surename,
@@ -23,12 +26,15 @@ async function register_user(req, res) {
       gender,
       email,
       password: hashed_password,
+      image
     });
+
+    console.log(newUser);
 
     const token = jwt_generate.generateAccessToken(email);
      mailer.send_Mail(email, token);
 
-    return res.send(JSON.stringify({ status: 'User Created', createdData: newUser}));
+    return res.send(JSON.stringify({ status: 'user', createdData: "newUser", token}));
   } catch (error) {
     console.error(error);
     return res.send(JSON.stringify({ status: 'Error Registering' }));
@@ -46,6 +52,8 @@ async function login_user(req, res) {
     }
 
     const match = await bcrypt.compare(password, user.password);
+    console.log(user.password);
+    console.log(match);
     if (!match) {
       return res.status(201).json({ status: 'Wrong password' });
     }

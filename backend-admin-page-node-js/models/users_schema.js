@@ -47,14 +47,18 @@
       password: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      image: {
+        type: Sequelize.STRING,
+        defaultValue: 'https://t3.ftcdn.net/jpg/05/87/76/66/240_F_587766653_PkBNyGx7mQh9l1XXPtCAq1lBgOsLl6xH.jpg'
       }
     }, {
-      hooks: {
-        beforeCreate: async (user) => {
-          const hashedPassword = await bcrypt.hash(user.password, saltRounds);
-          user.password = hashedPassword;
-        }
-      }
+      // hooks: {
+      //   beforeCreate: async (user) => {
+      //     const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+      //     user.password = hashedPassword;
+      //   }
+      // }
     });
     
     module.exports = { User };

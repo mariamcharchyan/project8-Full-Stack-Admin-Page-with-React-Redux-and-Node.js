@@ -6,6 +6,9 @@ export default function DeleteProduct(){
     // for Authorization
     const accessToken = localStorage.getItem('token');
     
+    // for refresh Get Products data 
+    const [refresh, setRefresh] = useState(false);
+
     //for Get Products error status
     const [error, setError] = useState('');
 
@@ -23,13 +26,17 @@ export default function DeleteProduct(){
               'Authorization': `${accessToken}`
             }
            })
-          .then(response => response.json())
+           .then(response => {
+            setRefresh(!refresh);
+            console.log(refresh);
+            return response.json();
+          })
           .then(data => {
             console.log(data);
           })
           .catch((error) => {
             setError(`Error: ${error}`)
-            console.error('Error:', error);
+            console.error('Error delete product:', error);
           });
     }
 
@@ -52,6 +59,7 @@ export default function DeleteProduct(){
                      categories_id: data.categories_id,
                      price: data.price,
                      discount_percentage: data.discount_percentage,
+                     quantity: data.quantity,
                      description: data.description,
                      createdAt: data.createdAt,
                      updatedAt: data.updatedAt
@@ -63,7 +71,7 @@ export default function DeleteProduct(){
                 setError('Error: failed get products')
                 console.error('Error get products:', error);
         })
-    },[handleDelete]);
+    },[refresh]);
 
     return (
         <div className='deleteProductContainer'>
@@ -75,6 +83,7 @@ export default function DeleteProduct(){
                 <div><p>cat_id</p></div>
                 <div><p>price</p></div>
                 <div><p>discount</p></div>
+                <div><p>quantity</p></div>
                 <div><p>description</p></div>
                 <div><p>delete</p></div>
             </div>
@@ -87,8 +96,11 @@ export default function DeleteProduct(){
                     <div><p>{product.categories_id}</p></div>
                     <div><p>{product.price} USD</p></div>
                     <div><p>{product.discount_percentage} %</p></div>
+                    <div><p>{product.quantity}</p></div>
                     <div className='productDescription'><p>{product.description}</p></div>
-                    <div className='productDelete'><button onClick={() => handleDelete(product.id)}>DELETE</button></div>
+                    <div className='productDelete'><button 
+                        onClick={() => handleDelete(product.id)}
+                    >DELETE</button></div>
                 </div>
                 ))}
             </div>

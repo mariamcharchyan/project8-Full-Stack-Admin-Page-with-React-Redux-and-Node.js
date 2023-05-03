@@ -32,7 +32,7 @@
 }
 .deleteProductData{
     display: grid;
-    grid-template-columns: 20px  64px 120px 50px 60px 50px auto 80px;
+    grid-template-columns: 20px  64px 120px 50px 60px 70px 70px auto 110px;
     gap: 2px;
     background-color: #ececec;
     text-align: center;
@@ -48,7 +48,7 @@
 
 .deleteProduct{
     display: grid;
-    grid-template-columns: 20px  64px 120px 50px 60px 50px auto 80px;
+    grid-template-columns: 20px  64px 120px 50px 60px 70px 70px auto 110px;
     gap: 2px;
     background-color: white;
 }
@@ -78,7 +78,9 @@
 .productDelete {
     display: flex;
     align-items: center;
-}
+    justify-content: center;
+} 
+
 .productDelete button{
     background-color: red;
     width: 70px;

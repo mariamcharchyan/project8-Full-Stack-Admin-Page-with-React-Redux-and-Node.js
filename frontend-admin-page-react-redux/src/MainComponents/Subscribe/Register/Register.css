@@ -51,7 +51,7 @@
 
 }
 
-.registerButton:active {
+.register-Button:active {
     box-shadow: 5px 5px 15px 8px #4c4974;
   }
 
@@ -81,6 +81,6 @@
     cursor: pointer;
 }
 
-.loginButton:active {
+.login-Button:active {
     box-shadow: 5px 5px 15px 8px #4c4974;
   }

@@ -32,6 +32,7 @@ export default function GetProduct(){
                      categories_id: data.categories_id,
                      price: data.price,
                      discount_percentage: data.discount_percentage,
+                     quantity: data.quantity,
                      description: data.description,
                      createdAt: data.createdAt,
                      updatedAt: data.updatedAt
@@ -55,6 +56,7 @@ export default function GetProduct(){
                     <div><p>cat_id</p></div>
                     <div><p>price</p></div>
                     <div><p>discount</p></div>
+                    <div><p>quantity</p></div>
                     <div><p>description</p></div>
                     {/* <div><p>{product.createdAt}</p></div>
                     <div><p>{product.updatedAt}</p></div> */}
@@ -68,6 +70,7 @@ export default function GetProduct(){
                     <div><p>{product.categories_id}</p></div>
                     <div><p>{product.price} USD</p></div>
                     <div><p>{product.discount_percentage} %</p></div>
+                    <div><p>{product.quantity}</p></div>
                     <div className='productDescription'><p>{product.description}</p></div>
                     {/* <div><p>{product.createdAt}</p></div>
                     <div><p>{product.updatedAt}</p></div> */}

@@ -10,6 +10,7 @@ export default function AddProduct(){
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [discountPercentage, setDiscountPercentage] = useState('');
+    const [quantity, setQuantity] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [newProductData, setNewProductData] = useState('');
@@ -50,6 +51,7 @@ export default function AddProduct(){
             name: name,
             price: price,
             discount_percentage: discountPercentage,
+            quantity: quantity,
             description: description,
             categories_id: category
         }
@@ -110,6 +112,10 @@ export default function AddProduct(){
                 <div className='discount_percentage'>
                     <h5>Discount Percentage:</h5>
                     <input type="text" value={discountPercentage} onChange={(event) => setDiscountPercentage(event.target.value)} />
+                </div>
+                <div className='discount_percentage'>
+                    <h5>Quantity:</h5>
+                    <input type="text" value={quantity} onChange={(event) => setQuantity(event.target.value)} />
                 </div>
                 <div className='description'>
                     <h5>Description:</h5>

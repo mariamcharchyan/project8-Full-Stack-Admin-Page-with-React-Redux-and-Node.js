@@ -23,8 +23,8 @@ function get_product_id(req,res){
 };
 
 function post_product(req, res){
-    const {image, name, price, discount_percentage, description, categories_id} = req.body;
-    Product.create({image, name, price, discount_percentage, description, categories_id})
+    const {image, name, price, discount_percentage, quantity, description, categories_id} = req.body;
+    Product.create({image, name, price, discount_percentage, quantity, description, categories_id})
         .then((prod)=>{
             res.status(201).json({successed: "Product added successfully"})
         }).catch((err) => {
@@ -49,7 +49,7 @@ function delete_product_id(req, res){
 
 function put_product_id(req, res){
     const id = req.params.id;
-    const {image, name, price, discount_percentage, description, categories_id} = req.body;
+    const {image, name, price, discount_percentage, quantity, description, categories_id} = req.body;
     Product.findByPk(id)
       .then((product) => {
         if (!product) {
@@ -61,6 +61,7 @@ function put_product_id(req, res){
         product.discount_percentage = discount_percentage;
         product.description = description;
         product.categories_id = categories_id;
+        product.quantity = quantity;
         product.save()
           .then(() => {
             res.json({ status: "product updated" });
