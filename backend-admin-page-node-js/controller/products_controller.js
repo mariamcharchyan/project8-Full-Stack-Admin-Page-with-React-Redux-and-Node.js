@@ -39,7 +39,6 @@ function delete_product_id(req, res){
                 res.status(404).json({ error: 'Product not found' });
             } else {
                 res.status(201).json({ successed: 'Product deleted' });
-                // res.json({ successed: "product updated" });
             }
         })
         .catch((err) => {

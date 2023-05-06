@@ -16,6 +16,7 @@ export default function LoginForm(){
 
   const checkStatus = () =>{
     console.log(status);
+      localStorage.setItem("status", status);
       if (status === "admin") {
         console.log('//admin');
         navigate("/loggedin/admin");

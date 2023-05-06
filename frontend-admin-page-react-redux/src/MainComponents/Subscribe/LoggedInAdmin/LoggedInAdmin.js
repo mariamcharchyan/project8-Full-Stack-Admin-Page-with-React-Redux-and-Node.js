@@ -1,8 +1,10 @@
 import './LoggedInAdmin.css';
+import { isExpired } from 'react-jwt';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLoginForm } from "../reducerLoginForm";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ErrorModal from './Services/ErrorModal'
 import AdminPart from './AdminPart/AdminPart';
 import Warning from './Services/Warning/Warning';
 import GetProduct from './Services/GetProduct/GetProduct';
@@ -13,6 +15,39 @@ import CRUD_Category from './Services/CRUDcategory/CRUDcategory';
 
 
 export default function LoggedInAdmin(){
+
+    
+    const dispatch = useDispatch(); 
+    const navigate = useNavigate();
+
+    // for showErrorModal from logout
+    const [showErrorModal, setShowErrorModal] = useState(false);
+
+    //for protect  to the /amin url 
+    const status = localStorage.getItem('status')
+
+    useEffect(() => {
+        if(status !== 'admin'){
+            navigate("/login")
+        }
+    },[])
+
+
+    // function isTokenExpired(token) {
+
+    //    return isExpired(token)
+    //     // const decoded = jwt.decode(token);
+    //     // const currentTime = Math.floor(Date.now() / 1000); // convert to seconds
+    //     // return decoded.exp < currentTime;
+    // }
+
+    // const accessToken = localStorage.getItem('token');
+    // useEffect(()=>{
+    //     if (isTokenExpired(accessToken)) {
+    //         console.log("Access token has expired!");
+    //         // Send a message to the user or take appropriate action
+    //     }else{console.log("Access token!");}
+    // },[])
 
     //for admin or services data
     const [adminOrServices, setAdminOrServices] = useState(true);
@@ -29,12 +64,9 @@ export default function LoggedInAdmin(){
         addProduct: false,
         updateProduct: false,
         CRUDcategory:false,
-        // getCategory: false,
-        // deleteCategory: false,
-        // addCategory: false,
-        // updateCategory: false
     });
     console.log(services);
+
     function setService(key) {
         setServices(() => {
             const newServices = {};
@@ -50,8 +82,6 @@ export default function LoggedInAdmin(){
     }
 
     //for Logout button
-    const dispatch = useDispatch(); 
-    const navigate = useNavigate();
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -78,6 +108,10 @@ export default function LoggedInAdmin(){
                  <AdminPart />
                  : 
                  <>
+                    
+                    {showErrorModal && (
+                        <ErrorModal handleLogout={handleLogout} />
+                    )}
                     <div className='containerAdminLeft'>
                         <h2>Services</h2>
                         <ul>
@@ -94,11 +128,11 @@ export default function LoggedInAdmin(){
                     </div>
                     <div  className='containerAdminRight'>
                     {services.warning ? <Warning /> : null}
-                    {services.addProduct ? <AddProduct /> : null}
-                    {services.getProduct ? <GetProduct /> : null}
-                    {services.deleteProduct ? <DeleteProduct /> : null}
-                    {services.updateProduct ? <UpdateProduct /> : null}
-                    {services.CRUDcategory ? <CRUD_Category /> : null}
+                    {services.addProduct ? <AddProduct setShowErrorModal={setShowErrorModal}/> : null}
+                    {services.getProduct ? <GetProduct setShowErrorModal={setShowErrorModal}/> : null}
+                    {services.deleteProduct ? <DeleteProduct setShowErrorModal={setShowErrorModal}/> : null}
+                    {services.updateProduct ? <UpdateProduct setShowErrorModal={setShowErrorModal}/> : null}
+                    {services.CRUDcategory ? <CRUD_Category setShowErrorModal={setShowErrorModal}/> : null}
                     </div>
                     </>
                  }

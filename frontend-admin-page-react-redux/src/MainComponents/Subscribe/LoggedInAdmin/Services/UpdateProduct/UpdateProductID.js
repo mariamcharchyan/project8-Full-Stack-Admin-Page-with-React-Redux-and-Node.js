@@ -1,7 +1,7 @@
 import './UpdateProductID.css';
 import { useState, useEffect } from 'react';
 
-export default function UpdateProduct({setIsEditing, product}){
+export default function UpdateProduct({setIsEditing, product, setShowErrorModal}){
     // for Authorization
     const accessToken = localStorage.getItem('token');
         //for Get Product with id
@@ -46,6 +46,7 @@ export default function UpdateProduct({setIsEditing, product}){
             console.log(data);
         })
         .catch((error) => {
+            setShowErrorModal(true);
             console.error('Error:', error);
         });
     }
@@ -66,6 +67,7 @@ export default function UpdateProduct({setIsEditing, product}){
                 console.log(newDataCategories);
             })
             .catch(error => {
+                setShowErrorModal(true);
                 console.error(`Error categories: ${error}`);
         })
     ),[]);

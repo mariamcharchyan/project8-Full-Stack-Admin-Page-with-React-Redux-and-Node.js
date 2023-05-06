@@ -2,7 +2,7 @@ import './UpdateProduct.css';
 import UpdateProductID from './UpdateProductID';
 import { useState, useEffect } from 'react';
 
-export default function UpdateProduct(){
+export default function UpdateProduct({setShowErrorModal}){
     // for Authorization
     const accessToken = localStorage.getItem('token');
 
@@ -43,6 +43,7 @@ export default function UpdateProduct(){
                      setproductsData(newDataProducts);
             })
             .catch(error => {
+                setShowErrorModal(true);
                 // setError('Error: failed get products')
                 console.error('Error get products:', error);
         })
@@ -80,6 +81,9 @@ export default function UpdateProduct(){
             </div>
         </div>
         :
-        <UpdateProductID setIsEditing={setIsEditing} product={updateingProduct}/>    
+        <UpdateProductID 
+            setIsEditing={setIsEditing}
+            product={updateingProduct}
+            setShowErrorModal={setShowErrorModal}/>    
     );
 };

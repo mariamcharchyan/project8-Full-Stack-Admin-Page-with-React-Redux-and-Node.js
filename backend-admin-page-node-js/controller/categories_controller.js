@@ -16,7 +16,7 @@ function add_category(req, res) {
         res.status(201).json({ id: category.id, name: category.name });
       })
       .catch((err) => {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message });        
       });
   }
 

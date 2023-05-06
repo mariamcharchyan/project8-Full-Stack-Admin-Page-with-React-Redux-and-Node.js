@@ -1,8 +1,7 @@
 import './GetProduct.css';
 import { useState, useEffect } from 'react';
 
-export default function GetProduct(){
-
+export default function GetProduct({setShowErrorModal}){
     // for Authorization
     const accessToken = localStorage.getItem('token');
 
@@ -41,6 +40,7 @@ export default function GetProduct(){
                      setproductsData(newDataProducts);
             })
             .catch(error => {
+                setShowErrorModal(true);
                 setError('Error: failed get products')
                 console.error('Error get products:', error);
         })

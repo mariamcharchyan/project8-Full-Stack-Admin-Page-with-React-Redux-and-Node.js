@@ -12,9 +12,6 @@ const users_routes = require('./routes/users_routes')
 const categories_routes = require('./routes/categories_routes')
 const mail_rout = require('./routes/mail_rout')
 
-// const sequelize = new Sequelize('mydb',null,null,
-//     {dialect:'sqlite', storage:'database.db'});
-//տվյալների բազայու user, category և product 
 User.sync()
     .then(() => console.log('User table created successfully'))
     .catch((err) => console.log('Error creating user table:', err));

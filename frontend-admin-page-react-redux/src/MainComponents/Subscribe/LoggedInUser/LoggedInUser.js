@@ -13,6 +13,15 @@ export default function LoggedInUser(){
 
     const dispatch = useDispatch(); 
     const navigate = useNavigate();
+
+    //for protect  to the /user url 
+    const status = localStorage.getItem('status')
+
+    useEffect(() => {
+        if(status !== 'user'){
+            navigate("/login")
+        }
+    },[])
     
     const handleLogout = (e) => {
         e.preventDefault();

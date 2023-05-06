@@ -1,7 +1,7 @@
 import './DeleteProduct.css';
 import { useState, useEffect } from 'react';
 
-export default function DeleteProduct(){
+export default function DeleteProduct({setShowErrorModal}){
     
     // for Authorization
     const accessToken = localStorage.getItem('token');
@@ -35,6 +35,7 @@ export default function DeleteProduct(){
             console.log(data);
           })
           .catch((error) => {
+            setShowErrorModal(true);
             setError(`Error: ${error}`)
             console.error('Error delete product:', error);
           });
@@ -68,6 +69,7 @@ export default function DeleteProduct(){
                      setproductsData(newDataProducts);
             })
             .catch(error => {
+                setShowErrorModal(true);
                 setError('Error: failed get products')
                 console.error('Error get products:', error);
         })

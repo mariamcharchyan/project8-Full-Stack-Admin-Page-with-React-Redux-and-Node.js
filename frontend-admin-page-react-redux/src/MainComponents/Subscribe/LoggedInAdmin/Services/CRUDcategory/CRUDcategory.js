@@ -2,10 +2,10 @@ import './CRUDcategory.css';
 import CRUDcategoryItem from './CRUDcategoryItem';
 import { useState, useEffect } from 'react';
 
-export default function CRUDcategory(){
+export default function CRUDcategory({setShowErrorModal}){
     // for Authorization
     const accessToken = localStorage.getItem('token');
-    
+
 
     // for add new category
     const [catNameAdd, setCatNameAdd] = useState('');
@@ -31,6 +31,9 @@ export default function CRUDcategory(){
             console.log(data);
         })
         .catch((error) => {
+            if(error == 'Forbidden'){
+                setShowErrorModal(true);
+            }
             console.error( error);
         });
     }
@@ -50,7 +53,10 @@ export default function CRUDcategory(){
                 setCategories(newDataCategories);
             })
             .catch(error => {
-                console.error('Error get categories:', error);
+                // if(error == 'SyntaxError: Unexpected token "F", "Forbidden" is not valid JSON'){
+                    setShowErrorModal(true);
+                // }
+                console.error(error);
         })
     },[refresh]);
 
@@ -86,7 +92,8 @@ export default function CRUDcategory(){
                     key={category.id} 
                     category={category} 
                     setRefresh={setRefresh}
-                    refresh={refresh}/>
+                    refresh={refresh}
+                    setShowErrorModal={setShowErrorModal}/>
                 ))}
             </div>
         </div>

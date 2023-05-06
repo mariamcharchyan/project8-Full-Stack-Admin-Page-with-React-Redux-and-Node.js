@@ -1,7 +1,7 @@
 import './CRUDcategory.css';
 import { useState, useEffect } from 'react';
 
-export default function CRUDcategoryItem({category, setRefresh, refresh}){
+export default function CRUDcategoryItem({category, setRefresh, refresh, setShowErrorModal}){
     // for Authorization
     const accessToken = localStorage.getItem('token');
 
@@ -27,7 +27,10 @@ export default function CRUDcategoryItem({category, setRefresh, refresh}){
             console.log(data);
         })
         .catch((error) => {
-            console.error(error);
+            if(error.message == 'Forbidden'){
+                setShowErrorModal(true);
+            }
+            console(error.message);
         });
     }
     const handleDeleteCategory  = (id) => {
@@ -54,30 +57,13 @@ export default function CRUDcategoryItem({category, setRefresh, refresh}){
             }
         })
         .catch((error) => {
-            console.error(error);
+            if(error.message == 'Forbidden'){
+                setShowErrorModal(true);
+            }
+            console(error.message);
         });
     }
-    // const handleDeleteCategory  = (id) => {
-    //     const accessToken = localStorage.getItem('token');
-    //     fetch(`http://localhost:3000/category/delete/${id}`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //           'Authorization': `${accessToken}`
-    //         }
-    //        })
-    //        .then(response => {
-    //         setRefresh(!refresh);
-    //         console.log(refresh);
-    //         return response.json();
-    //       })
-    //       .then(data => {
-    //         console.log(data);
-    //       })
-    //       .catch((error) => {
-    //         console.error(error);
-    //       });
-    // }
+
 
     return (
         <div className='getCategoryBodyItem'>

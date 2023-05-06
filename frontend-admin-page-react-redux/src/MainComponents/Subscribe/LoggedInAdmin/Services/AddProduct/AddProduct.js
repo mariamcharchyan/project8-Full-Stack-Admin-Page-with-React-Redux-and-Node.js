@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './AddProduct.css';
 
-export default function AddProduct(){
+export default function AddProduct({setShowErrorModal}){
     // for Authorization
     const accessToken = localStorage.getItem('token');
 
@@ -39,6 +39,7 @@ export default function AddProduct(){
                 setCategories(newDataCategories);
             })
             .catch(error => {
+                setShowErrorModal(true);
                 setError(`Error categories: ${error}`)
                 console.error('Error get categories:', error);
         })
@@ -76,7 +77,7 @@ export default function AddProduct(){
             setSuccessed(data.successed)
           })
           .catch((error) => {
-            console.log();
+            setShowErrorModal(true);
             setError('Error: failed post product')
             console.error('Error:', error);
           });
